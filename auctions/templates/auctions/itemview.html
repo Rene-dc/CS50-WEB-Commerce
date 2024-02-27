@@ -1,0 +1,168 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <div class="maincontainer">
+        <div class="mainitemcontainer">
+            <div class="left">
+                <div class="image">
+                    <img src="{{ auction.image_link }}" alt="bid image">
+<!-- WATCHLIST ICON -->
+                    {% if watchlist.user_id %}
+                        <p class="watchlist">Watchlist</p>
+                    {% endif %}
+                </div>
+                
+            </div>
+            <div class="right">
+                <div class="title">
+                    <p>{{ auction.title }}</p>
+                </div>
+                <div class="description">
+                    <p>{{ auction.description }}</p>
+                </div>
+                <div class="price">
+                    {% if bid %}
+                        <p>Current bid: <span>${{ bid.last_price }}</span></p>
+                    {% else %}
+                        <p>Current bid: <span>${{ auction.starting_price }}</span></p>
+                    {% endif %}
+                </div>
+<!-- BIDS FORM -->
+                {% if auction.active == 1 %} 
+                    {% if user.is_authenticated %}
+                        <div class="bids">
+                            {% if bid.buyer_id_id == user.id %}
+                                <p>{{ bid.bids_count }} bid(s) so far. Your bid is the current bid.</p>
+                            {% elif bid %}
+                                <p>{{ bid.bids_count }} bid(s) so far.</p>
+                            {% else %}
+                                <p>0 bid(s) so far.</p>
+                            {% endif %}
+<!-- SELLER VIEW -->
+                            {% if auction.seller == user %}
+                                <div class="closebid">
+                                    <form action="{% url 'closebid' %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" value="{{ auction.id }}" name="idauction">
+                                        <input type="submit" value="Close auction">
+                                    </form>
+                                </div>
+                            {% else %}
+<!-- BUYER VIEW -->
+                                {% if bid %}
+                                    <form action="{% url 'placebid' %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="number" min="{{ bid.last_bid }} + 0.1" required name="newbid" placeholder="Bid">
+                                        <p class="dollar">$</p>
+                                        <input type="hidden" value="{{ auction.id }}" name="idauction">
+                                        <input type="submit" value="Place bid">
+                                    </form>
+                                {% else %}
+                                    <form action="{% url 'placebid' %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="number" min="{{ auction.starting_price }} + 0.01" required name="newbid" placeholder="Bid">
+                                        <p class="dollar">$</p>
+                                        <input type="hidden" value="{{ auction.id }}" name="idauction">
+                                        <input type="submit" value="Place bid">
+                                    </form>
+                                {% endif %}
+                                <div class="errormessage">
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        {% if message.tags != "warning" %}
+                                            <p class="{{ message.tags }}">{{ message }}</p>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% else %}
+<!-- NO LOG VIEW -->
+                        <div class="bids">
+                            <p>You must <a href="{% url 'login' %}" class="nologbid">Log In</a> to place a bid.</p>
+                        </div>
+                    {% endif %}
+<!-- ENDED AUCTION VIEW -->
+                {% else %}
+                    {% if bid.buyer_id.id == user.id %}
+                        <div class="bids">
+                            <p class="win">You won this auction ! Congratulations !</p>
+                        </div>
+                    {% else %}
+                        <div class="bids">
+                            <p>This auction is closed.</p>
+                        </div>
+                    {% endif %}
+                {% endif %}
+<!-- WATCHLIST FORM -->
+                <div class="watchlist">
+                    {% if auction.seller != user %}
+                        {% if user.is_authenticated %}
+                            {% if watchlist.user_id %}
+                                <form action="{% url 'watchlist_remove' %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" value="{{ auction.id }}" name="idauction">
+                                    <input type="submit" value="Remove from watchlist">
+                                </form>
+                            {% else %}
+                                <form action="{% url 'watchlist_add' %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" value="{{ auction.id }}" name="idauction">
+                                    <input type="submit" value="Add on watchlist">
+                                </form>
+                            {% endif %}
+                        {% else %}
+                            <p><a href="{% url 'login' %}" class="nologbid">Log In</a> to add on watchlist</p>
+                        {% endif %}
+                    {% endif %}
+                </div>
+<!-- INFOS -->
+                <div class="category">
+                    <p>Category: {{ category }}</p>
+                </div>
+                <div class="date">
+                    <p>Created {{ auction.creation_date }}</p>
+                </div>
+                <div class="seller">
+                    <p>By {{ auction.seller }}</p>
+                </div>
+            </div>
+        </div>
+<!-- COMMENTS LIST -->
+        {% if comments %}
+            <div class="commentsection">
+                {% for item in comments %}
+                    <div class="comment">
+                        <div class="infos">
+                            <h3>{{ item.user_id }}</h3>
+                            <h4>{{ item.date }}</h4>
+                        </div>
+                        <div class="text">
+                            <p>{{ item.comment }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+<!-- ADD A COMMENT -->
+        {% if user.is_authenticated %}
+            <div class="addcomment">
+                <h3>Add a comment:</h3>
+                <form action="/addcomment" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{ auction.id }}" name="idauction">
+                    <textarea name="comment" required></textarea>
+                    <input type="submit" value="Add comment">
+                </form>
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message.tags == "warning" %}
+                            <p class="{{ message.tags }}">{{ message }}</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

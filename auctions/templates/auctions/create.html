@@ -1,0 +1,27 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}
+    Create listing
+{% endblock %}
+
+{% block body %}
+    <div class="maincontainer">
+        <h2>Create listing</h2>
+        {% if user.is_authenticated %}
+            <div class="createformcontainer">
+                <form action="{% url 'create' %}" method="post">
+                    {% csrf_token %}
+                    {{ form }}
+                    <input type="submit">
+                </form>
+            </div>
+        {% else %}
+            <div class="nolog">
+                <p>You need to login to list an item:</p>
+                <a href="{% url 'login' %}">Log in</a>
+                <p>If you don't already have an account:</p>
+                <a href="{% url 'register' %}">Register</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

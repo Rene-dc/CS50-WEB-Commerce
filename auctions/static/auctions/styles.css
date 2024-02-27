@@ -1,0 +1,411 @@
+@import url("https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+.highbanner .user .log li a, .highbanner .nav .nav-item a {
+  text-decoration: none;
+  color: rgb(211, 211, 211);
+  letter-spacing: 0.4px;
+}
+
+.highbanner .user .log li a:hover, .highbanner .nav .nav-item a:hover {
+  text-decoration: underline;
+  color: rgb(240, 240, 240);
+}
+
+.maincontainer .commentsection .comment, .maincontainer .addcomment, .maincontainer .mainitemcontainer, .maincontainer .logformcontainer, .maincontainer .createformcontainer, .maincontainer .listcontainer {
+  background-color: white;
+  margin: 10px 0;
+  border-radius: 16px;
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+  border-color: rgba(223, 225, 229, 0);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: sans-serif;
+}
+
+.maincontainer .commentsection .comment .text, .maincontainer .addcomment form textarea {
+  width: 95%;
+  border-radius: 13px;
+  padding: 7px 10px;
+  margin-top: 10px;
+  margin-bottom: 8px;
+  margin-left: 5%;
+}
+
+.nologbid, .maincontainer .categorieslist .link, .maincontainer .mainitemcontainer .right .watchlist form input[type=submit], .maincontainer .mainitemcontainer .right .bids form input[type=submit], .maincontainer .logformcontainer form input[type=submit], .maincontainer .nolog a, .maincontainer .createformcontainer form input[type=submit] {
+  box-shadow: 0 1px 2px rgba(32, 109, 132, 0.077);
+  background-color: beige;
+  color: rgb(32, 109, 132);
+  font-family: "Tilt Warp", arial, Sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.4px;
+  border: 0px transparent;
+  border-radius: 10px;
+}
+
+.maincontainer .mainitemcontainer .right .watchlist form input[type=submit]:hover, .maincontainer .mainitemcontainer .right .bids form input[type=submit]:hover, .maincontainer .logformcontainer form input[type=submit]:hover, .maincontainer .createformcontainer form input[type=submit]:hover {
+  box-shadow: 0 1px 6px rgba(32, 109, 132, 0.281);
+  cursor: pointer;
+}
+
+.highbanner {
+  background-color: rgb(32, 109, 132);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 7vh;
+  justify-content: space-between;
+  padding: 0 4vw;
+  font-family: "Tilt Warp", arial, Sans-serif;
+}
+.highbanner h1 {
+  color: rgb(240, 240, 240);
+}
+.highbanner .nav {
+  justify-content: space-between;
+  align-items: center;
+  width: 700px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  font-weight: 300;
+}
+.highbanner .nav .nav-item {
+  padding: 0 2vw;
+}
+.highbanner .user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgb(240, 240, 240);
+}
+.highbanner .user .signed {
+  padding: 0 10px;
+}
+.highbanner .user .log {
+  padding: 0 10px;
+  display: flex;
+}
+.highbanner .user .log li {
+  padding: 0 10px;
+}
+.maincontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  background-color: beige;
+  min-height: 93vh;
+}
+.maincontainer h2 {
+  font-family: "Tilt Warp", arial, Sans-serif;
+  padding: 10px 0;
+  margin-top: 8px;
+  letter-spacing: 0.2px;
+  color: rgb(32, 109, 132);
+  font-size: 30px;
+}
+.maincontainer .listcontainer {
+  width: 800px;
+  height: 180px;
+}
+.maincontainer .listcontainer .image {
+  height: 160px;
+  margin-left: 40px;
+  width: 280px;
+  display: flex;
+  justify-content: center;
+}
+.maincontainer .listcontainer .image img {
+  max-height: 100%;
+}
+.maincontainer .listcontainer .text {
+  height: 160px;
+  width: 360px;
+  margin-left: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.maincontainer .listcontainer .text .title {
+  height: 30px;
+  justify-content: center;
+}
+.maincontainer .listcontainer .text .title a {
+  color: black;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 600;
+}
+.maincontainer .listcontainer .text .price {
+  position: relative;
+  bottom: 10px;
+  height: 40px;
+  justify-content: baseline;
+}
+.maincontainer .listcontainer .text .price p {
+  font-size: 30px;
+  font-weight: 600;
+}
+.maincontainer .createformcontainer {
+  width: 500px;
+  justify-content: center;
+}
+.maincontainer .createformcontainer form {
+  margin: 20px 60px;
+  display: flex;
+  flex-direction: column;
+}
+.maincontainer .createformcontainer form label {
+  margin-bottom: 2px;
+  font-weight: 600;
+  font-size: 14px;
+}
+.maincontainer .createformcontainer form input, .maincontainer .createformcontainer form select {
+  width: 440px;
+  margin-bottom: 10px;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 4px;
+}
+.maincontainer .createformcontainer form textarea {
+  width: 440px;
+  max-width: 440px;
+  min-width: 440px;
+  height: 200px;
+  min-height: 200px;
+  max-height: 200px;
+  margin-bottom: 10px;
+  padding: 10px 10px;
+  font-family: arial, Sans-serif;
+  border-radius: 4px;
+}
+.maincontainer .createformcontainer form input[type=submit] {
+  margin-top: 10px;
+  width: 300px;
+  margin-left: 80px;
+}
+.maincontainer .nolog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.maincontainer .nolog a {
+  margin-top: 10px;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+.maincontainer .logformcontainer {
+  width: 400px;
+  justify-content: center;
+}
+.maincontainer .logformcontainer form {
+  margin: 20px 60px;
+  display: flex;
+  flex-direction: column;
+}
+.maincontainer .logformcontainer form label {
+  margin-bottom: 2px;
+  font-weight: 600;
+  font-size: 14px;
+}
+.maincontainer .logformcontainer form input, .maincontainer .logformcontainer form select {
+  width: 340px;
+  margin-bottom: 10px;
+  height: 40px;
+  padding: 0 10px;
+}
+.maincontainer .logformcontainer form input[type=submit] {
+  margin-top: 10px;
+  width: 200px;
+  margin-left: 80px;
+}
+.maincontainer .mainitemcontainer {
+  width: 1080px;
+  margin-top: 5vh;
+  display: flex;
+  padding: 30px 30px;
+  align-items: flex-start;
+}
+.maincontainer .mainitemcontainer .left .image {
+  position: relative;
+  height: 450px;
+  width: 450px;
+  display: flex;
+  justify-content: center;
+}
+.maincontainer .mainitemcontainer .left .image img {
+  max-width: 100%;
+  max-height: auto;
+  object-fit: contain;
+}
+.maincontainer .mainitemcontainer .left .image .watchlist {
+  font-family: "Tilt Warp", arial, Sans-serif;
+  color: rgb(240, 240, 240);
+  width: 100px;
+  height: 25px;
+  background-color: rgb(32, 109, 132);
+  border-radius: 4px;
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+  border-color: rgba(223, 225, 229, 0);
+  z-index: 2;
+  position: absolute;
+  left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.maincontainer .mainitemcontainer .right {
+  border-left: 4px solid rgba(32, 109, 132, 0.02);
+  padding-left: 60px;
+  margin-left: 70px;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  height: 450px;
+}
+.maincontainer .mainitemcontainer .right .title {
+  max-width: 100%;
+  height: 10%;
+  font-size: 30px;
+  font-weight: 600;
+}
+.maincontainer .mainitemcontainer .right .description {
+  max-width: 100%;
+  height: 38%;
+}
+.maincontainer .mainitemcontainer .right .price {
+  display: flex;
+  height: 10%;
+  align-items: center;
+}
+.maincontainer .mainitemcontainer .right .price span {
+  font-size: 30px;
+  font-weight: 600;
+}
+.maincontainer .mainitemcontainer .right .bids {
+  height: 20%;
+}
+.maincontainer .mainitemcontainer .right .bids form {
+  margin-top: 5px;
+  position: relative;
+}
+.maincontainer .mainitemcontainer .right .bids form input[type=number] {
+  height: 30px;
+  width: 60px;
+  padding-left: 15px;
+}
+.maincontainer .mainitemcontainer .right .bids form .dollar {
+  position: absolute;
+  top: 6px;
+  left: 7px;
+}
+.maincontainer .mainitemcontainer .right .bids form input[type=submit] {
+  height: 30px;
+  width: 100px;
+}
+.maincontainer .mainitemcontainer .right .bids .closebid input[type=submit] {
+  width: 180px;
+}
+.maincontainer .mainitemcontainer .right .watchlist {
+  height: 8%;
+}
+.maincontainer .mainitemcontainer .right .watchlist form input[type=submit] {
+  height: 30px;
+  width: 300px;
+}
+.maincontainer .mainitemcontainer .right .category {
+  height: 4%;
+}
+.maincontainer .mainitemcontainer .right .date {
+  height: 4%;
+}
+.maincontainer .mainitemcontainer .right .seller {
+  height: 4%;
+}
+.maincontainer .addcomment {
+  width: 800px;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.maincontainer .addcomment h3 {
+  font-size: 18px;
+}
+.maincontainer .addcomment form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.maincontainer .addcomment form textarea {
+  max-width: 95%;
+  min-width: 95%;
+  height: 100px;
+  min-height: 100px;
+  margin-bottom: 10px;
+  padding: 10px 10px;
+  font-family: arial, Sans-serif;
+}
+.maincontainer .addcomment form input[type=submit] {
+  height: 30px;
+  width: 20%;
+  margin-left: 80%;
+}
+.maincontainer .commentsection {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 2vh;
+}
+.maincontainer .commentsection .comment {
+  width: 800px;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.maincontainer .commentsection .comment .infos {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.maincontainer .commentsection .comment .text {
+  background-color: rgba(250, 250, 216, 0.286);
+  box-shadow: 0 1px 2px rgba(32, 109, 132, 0.1);
+}
+.maincontainer .categorieslist {
+  display: flex;
+  height: 35px;
+}
+.maincontainer .categorieslist .link {
+  background-color: none;
+  box-shadow: none;
+  font-size: 18px;
+}
+
+.error, .warning {
+  color: red;
+}
+
+.success {
+  color: green;
+}
+
+.nologbid {
+  margin-top: 10px;
+  font-size: 20px;
+  margin-bottom: 30px;
+  background-color: white;
+  box-shadow: none;
+}
+
+/*# sourceMappingURL=styles.css.map */

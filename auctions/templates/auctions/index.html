@@ -1,0 +1,38 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <div class="maincontainer">
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == "error" %}
+                    <p class="{{ message.tags }}">{{ message }}</p>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <h2>Active Listings</h2>
+        {% for list in lists %}
+            <div class="listcontainer">
+                <div class="image">
+                    <img src="{{ list.auction.image_link }}" alt="bid image">
+                </div>
+                <div class="text">
+                    <div class="title">
+                        <a href="{% url 'itemview' list.auction.id %}">{{ list.auction.title }}</a>
+                    </div>
+                    <div class="price">
+                        <p>${{ list.last_bid }}</p>
+                    </div>
+                    <div class="category">
+                        <p>{{ list.category_name }}</p>
+                    </div>
+                    <div class="date">
+                        <p>Created {{ list.auction.creation_date }}</p>
+                    </div>
+                    <div class="seller">
+                        <p>By {{ list.auction.seller }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
